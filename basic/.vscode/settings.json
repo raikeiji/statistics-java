@@ -3,5 +3,11 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
-    ]
+    ],
+    "editor.codeActionsOnSave": {
+        "windows.zoomLevel": 0.5,
+    "terminal.integrated.fontSize": 14
+    }
+
+    
 }

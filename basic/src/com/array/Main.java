@@ -1,4 +1,4 @@
-package com.core;
+package com.array;
 
 class Statistics{
 
@@ -6,6 +6,7 @@ class Statistics{
 
     Statistics(){
         this.data = null;
+        
     }
 
     public Statistics(int[] data){
@@ -23,13 +24,13 @@ class Statistics{
     }
 
     public int getMax(){
-        int min = data[0];
+        int max = data[0];
         for (int i = 1; i<data.length; i++){
-            if (min < data[i]){
-                min = data[i];
+            if (max < data[i]){
+                max = data[i];
             }
         }
-        return min;
+        return max;
     }
 
     public int getAverage(){
@@ -37,7 +38,7 @@ class Statistics{
         
         int sum = 0;	
         for (int i = 0; i<data.length; i++){
-            sum += data[0];
+            sum += data[i];
         }
 
         // the bad thing is average value has to be Integer
