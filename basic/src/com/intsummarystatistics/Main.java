@@ -7,6 +7,8 @@ import java.util.DoubleSummaryStatistics;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.LongSummaryStatistics;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 class Employee {
@@ -38,9 +40,6 @@ class Employee {
     public double getSalary() {
         return salary;
     }
-
-    // method printIntSummaryStatistics to call severala function like getCount(),
-    // getAverage(), getMin(), getMax(), getSum()
 
 }
 
@@ -120,6 +119,21 @@ public class Main {
         LongSummaryStatistics longSummary = LongStream.range(1, 100).summaryStatistics();
         
         printLongSummaryStatistics("LongSummaryStatistics for range 1-100", longSummary);
+
+        // Creating SummaryStatistics using Stream.collect
+        // Collectors.summarizingInt
+
+        IntSummaryStatistics empAgeStatistics = emp.stream().collect(Collectors.summarizingInt(Employee::getAge));
+
+        printIntSummaryStatistics("Employee Age Statistics", empAgeStatistics);
+
+        // Creating SummaryStatistics using Stream.collect
+        // Collectors.summarizingDouble
+
+        DoubleSummaryStatistics employeeSalaryStat = emp.stream().collect(Collectors.summarizingDouble(Employee::getSalary));
+
+        printDoubleSummaryStatistics("Employee Salary Statistics", employeeSalaryStat);
+
     }
 
     public static void printIntSummaryStatistics(String message, IntSummaryStatistics intsummary) {
