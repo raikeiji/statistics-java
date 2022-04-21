@@ -134,6 +134,13 @@ public class Main {
 
         printDoubleSummaryStatistics("Employee Salary Statistics", employeeSalaryStat);
 
+        // Creating SummaryStatistics using Stream.collect
+        // Example Collectors.summarizingDouble
+
+        LongSummaryStatistics longSummaryStat = List.of(1L, 2L, 3L, 4L, 5L).stream().collect(Collectors.summarizingLong(Long::longValue));
+
+        printLongSummaryStatistics("LongSummaryStatistics for range 1-5", longSummaryStat);
+
     }
 
     public static void printIntSummaryStatistics(String message, IntSummaryStatistics intsummary) {
