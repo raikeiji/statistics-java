@@ -2,7 +2,7 @@ package com.list;
 
 import java.util.List;
 
-class Employee{
+class Employee {
 
     private String name;
     private String city;
@@ -15,7 +15,7 @@ class Employee{
         this.age = age;
         this.salary = salary;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -27,6 +27,7 @@ class Employee{
     public int getAge() {
         return age;
     }
+
     public double getSalary() {
         return salary;
     }
@@ -36,12 +37,12 @@ class Employee{
 public class Main {
     public static void main(String[] args) {
         List<Employee> emp = List.of(
-            new Employee("Doe", "Berlin", 25, 12_000),
-            new Employee("John", "Sydney", 22, 9000),
-            new Employee("Mary", "Berlin", 29, 13_000),
-            new Employee("Mike", "London", 34, 10_500),
-            new Employee("Adams", "London", 32, 11_500),
-            new Employee("Harry", "Berlin", 35, 12_000));
+                new Employee("Doe", "Berlin", 25, 12_000),
+                new Employee("John", "Sydney", 22, 9000),
+                new Employee("Mary", "Berlin", 29, 13_000),
+                new Employee("Mike", "London", 34, 10_500),
+                new Employee("Adams", "London", 32, 11_500),
+                new Employee("Harry", "Berlin", 35, 12_000));
 
         // Streaming the list multiple times
 
@@ -56,5 +57,19 @@ public class Main {
         System.out.println("Average Age\t\t : " + avgAge);
         System.out.println("Minimal Age\t\t : " + minAge);
         System.out.println("Maximum Age\t\t : " + maxAge);
+
+        // Using conventional ‘for’ loop
+
+        int sumOfAge = 0;
+        int minimumAge = Integer.MAX_VALUE;
+        int maximumAge = Integer.MIN_VALUE;
+        for (Employee employee : emp) {
+            sumOfAge += employee.getAge();
+            minimumAge = Math.min(minimumAge, employee.getAge());
+            maximumAge = Math.max(maximumAge, employee.getAge());
+        }
+        System.out.println("Average age: " + ((double) sumOfAge / emp.size()));
+        System.out.println("Minimum age: " + minimumAge);
+        System.out.println("Maximum age: " + maximumAge);
     }
 }
