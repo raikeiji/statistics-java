@@ -1,5 +1,9 @@
-package com.list;
+// based on : https://javadevcentral.com/summary-statistics-in-java-8
 
+package com.intsummarystatistics;
+
+import java.net.SocketTimeoutException;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 class Employee {
@@ -31,6 +35,9 @@ class Employee {
     public double getSalary() {
         return salary;
     }
+
+    // method printIntSummaryStatistics to call severala function like getCount(),
+    // getAverage(), getMin(), getMax(), getSum()
 
 }
 
@@ -71,5 +78,22 @@ public class Main {
         System.out.println("Average age: " + ((double) sumOfAge / emp.size()));
         System.out.println("Minimum age: " + minimumAge);
         System.out.println("Maximum age: " + maximumAge);
+
+        // Using Summary Statistics in Primitive Streams
+
+        IntSummaryStatistics employeeAgeStatistics = emp.stream().mapToInt(Employee::getAge).summaryStatistics();
+       
+        printIntSummaryStatistics("Employee Age Statistics", employeeAgeStatistics);
+    }
+
+    public static void printIntSummaryStatistics(String message, IntSummaryStatistics intsummary) {
+
+        System.out.println(message);
+        System.out.println("Count\t : " + intsummary.getCount());
+        System.out.println("Average\t : " + intsummary.getAverage());
+        System.out.println("Minimal\t : " + intsummary.getMin());
+        System.out.println("Maximum\t : " + intsummary.getMax());
+        System.out.println("Sum\t : " + intsummary.getSum());
+
     }
 }
