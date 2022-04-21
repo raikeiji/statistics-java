@@ -92,6 +92,13 @@ public class Main {
 
         printDoubleSummaryStatistics("Employee Salary Statistics", employeeSalaryStatistics);
 
+        // (SummaryStatistics on a DoubleStream) Employee Salary Statistics for Berlin Employees
+
+        DoubleSummaryStatistics employeeSalaryStatisticsInBerlin = emp.stream()
+        .filter(employee -> employee.getCity().equals("Berlin")).mapToDouble(Employee::getSalary).summaryStatistics();
+
+        printDoubleSummaryStatistics("Employee Salary Statistics for Berlin Employees", employeeSalaryStatisticsInBerlin);
+
     }
 
     public static void printIntSummaryStatistics(String message, IntSummaryStatistics intsummary) {
