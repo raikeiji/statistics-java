@@ -3,6 +3,7 @@
 package com.intsummarystatistics;
 
 import java.net.SocketTimeoutException;
+import java.util.DoubleSummaryStatistics;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 
@@ -79,11 +80,18 @@ public class Main {
         System.out.println("Minimum age: " + minimumAge);
         System.out.println("Maximum age: " + maximumAge);
 
-        // Using Summary Statistics in Primitive Streams
+        // Using Summary Statistics in Primitive Streams (IntSummaryStatistics)
 
         IntSummaryStatistics employeeAgeStatistics = emp.stream().mapToInt(Employee::getAge).summaryStatistics();
        
         printIntSummaryStatistics("Employee Age Statistics", employeeAgeStatistics);
+
+        // SummaryStatistics on a DoubleStream
+
+        DoubleSummaryStatistics employeeSalaryStatistics = emp.stream().mapToDouble(Employee::getSalary).summaryStatistics();
+
+        printDoubleSummaryStatistics("Employee Salary Statistics", employeeSalaryStatistics);
+
     }
 
     public static void printIntSummaryStatistics(String message, IntSummaryStatistics intsummary) {
@@ -95,5 +103,16 @@ public class Main {
         System.out.println("Maximum\t : " + intsummary.getMax());
         System.out.println("Sum\t : " + intsummary.getSum());
 
+    }
+
+    public static void printDoubleSummaryStatistics(String message, DoubleSummaryStatistics doublesummary){
+
+        System.out.println(message);
+        System.out.println("Count\t : " + doublesummary.getCount());
+        System.out.println("Average\t : " + doublesummary.getAverage());
+        System.out.println("Minimal\t : " + doublesummary.getMin());
+        System.out.println("Maximum\t : " + doublesummary.getMax());
+        System.out.println("Sum\t : " + doublesummary.getSum());
+        
     }
 }
