@@ -6,6 +6,8 @@ import java.net.SocketTimeoutException;
 import java.util.DoubleSummaryStatistics;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.LongSummaryStatistics;
+import java.util.stream.LongStream;
 
 class Employee {
 
@@ -83,28 +85,41 @@ public class Main {
         // Using Summary Statistics in Primitive Streams (IntSummaryStatistics)
 
         IntSummaryStatistics employeeAgeStatistics = emp.stream().mapToInt(Employee::getAge).summaryStatistics();
-       
+
         printIntSummaryStatistics("Employee Age Statistics", employeeAgeStatistics);
 
         // SummaryStatistics on a DoubleStream
 
-        DoubleSummaryStatistics employeeSalaryStatistics = emp.stream().mapToDouble(Employee::getSalary).summaryStatistics();
+        DoubleSummaryStatistics employeeSalaryStatistics = emp.stream().mapToDouble(Employee::getSalary)
+                .summaryStatistics();
 
         printDoubleSummaryStatistics("Employee Salary Statistics", employeeSalaryStatistics);
 
-        // (SummaryStatistics on a DoubleStream) Employee Salary Statistics for Berlin Employees
+        // (SummaryStatistics on a DoubleStream) Employee Salary Statistics for Berlin
+        // Employees
 
         DoubleSummaryStatistics employeeSalaryStatisticsInBerlin = emp.stream()
-        .filter(employee -> employee.getCity().equals("Berlin")).mapToDouble(Employee::getSalary).summaryStatistics();
+                .filter(employee -> employee.getCity().equals("Berlin")).mapToDouble(Employee::getSalary)
+                .summaryStatistics();
 
-        printDoubleSummaryStatistics("Employee Salary Statistics for Berlin Employees", employeeSalaryStatisticsInBerlin);
+        printDoubleSummaryStatistics("Employee Salary Statistics for Berlin Employees",
+                employeeSalaryStatisticsInBerlin);
 
-        // (SummaryStatistics on a DoubleStream) Employee Salary Statistics for LONDON Employees
+        // (SummaryStatistics on a DoubleStream) Employee Salary Statistics for LONDON
+        // Employees
 
         DoubleSummaryStatistics employeeSalaryStatisticsInLondon = emp.stream()
-        .filter(employee -> employee.getCity().equals("London")).mapToDouble(Employee::getSalary).summaryStatistics();
+                .filter(employee -> employee.getCity().equals("London")).mapToDouble(Employee::getSalary)
+                .summaryStatistics();
 
-        printDoubleSummaryStatistics("Employee Salary Statistics for LONDON Employees", employeeSalaryStatisticsInLondon);
+        printDoubleSummaryStatistics("Employee Salary Statistics for LONDON Employees",
+                employeeSalaryStatisticsInLondon);
+
+        // Example SummaryStatistics on a LongStream
+
+        LongSummaryStatistics longSummary = LongStream.range(1, 100).summaryStatistics();
+        
+        printLongSummaryStatistics("LongSummaryStatistics for range 1-100", longSummary);
     }
 
     public static void printIntSummaryStatistics(String message, IntSummaryStatistics intsummary) {
@@ -118,7 +133,7 @@ public class Main {
 
     }
 
-    public static void printDoubleSummaryStatistics(String message, DoubleSummaryStatistics doublesummary){
+    public static void printDoubleSummaryStatistics(String message, DoubleSummaryStatistics doublesummary) {
 
         System.out.println(message);
         System.out.println("Count\t : " + doublesummary.getCount());
@@ -126,6 +141,20 @@ public class Main {
         System.out.println("Minimal\t : " + doublesummary.getMin());
         System.out.println("Maximum\t : " + doublesummary.getMax());
         System.out.println("Sum\t : " + doublesummary.getSum());
-        
+
+    }
+
+    // Example method of LongSummaryStatistics
+
+    public static void printLongSummaryStatistics(String message, LongSummaryStatistics longSummaryStatistics) {
+
+        System.out.println(message);
+        System.out.println("Count: " + longSummaryStatistics.getCount());
+        System.out.println("Avg: " + longSummaryStatistics.getAverage());
+        System.out.println("Min: " + longSummaryStatistics.getMin());
+        System.out.println("Max: " + longSummaryStatistics.getMax());
+        System.out.println("Sum: " + longSummaryStatistics.getSum());
+        System.out.println();
+
     }
 }
