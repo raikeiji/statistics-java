@@ -1,6 +1,6 @@
 // based on : https://javadevcentral.com/summary-statistics-in-java-8
 
-package com.intsummarystatistics;
+package com.summarystatistics;
 
 import java.net.SocketTimeoutException;
 import java.util.DoubleSummaryStatistics;
