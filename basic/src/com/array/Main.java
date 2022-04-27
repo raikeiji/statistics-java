@@ -67,6 +67,20 @@ class Statistics {
         return data;
     }
 
+    public int[] sortArray2() {
+        for (int i = 0; i < data.length; i++) {
+            for (int j = i + 1; j < data.length; j++) {
+                int tmp = 0;
+                if (data[i] > data[j]) {
+                    tmp = data[i];
+                    data[i] = data[j];
+                    data[j] = tmp;
+                }
+            }
+        }
+        return data;
+    }
+
 }
 
 public class Main {
@@ -81,5 +95,7 @@ public class Main {
         System.out.println("Average value\t\t : " + stat.getAverage()); // Integer Value
 
         System.out.println("sort data\t\t : " + Arrays.toString(stat.sortArray()));
+
+        System.out.println("sort data version 2 \t\t : " + Arrays.toString(stat.sortArray2()));
     }
 }
