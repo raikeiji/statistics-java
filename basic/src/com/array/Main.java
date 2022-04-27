@@ -81,6 +81,19 @@ class Statistics {
         return data;
     }
 
+    // median function
+
+    public double getMedian(){
+        double median;
+        int[] sortedValue = sortArray();
+
+        if (sortedValue.length % 2 == 1) {
+            median = sortedValue[data.length / 2];
+        }else{
+            median = ((double) (sortedValue[sortedValue.length / 2] + sortedValue[(sortedValue.length / 2) - 1])) / 2;
+        }
+        return median;
+    }
 }
 
 public class Main {
@@ -97,5 +110,7 @@ public class Main {
         System.out.println("sort data\t\t : " + Arrays.toString(stat.sortArray()));
 
         System.out.println("sort data version 2 \t\t : " + Arrays.toString(stat.sortArray2()));
+
+        System.out.println("Median\t\t : "+ stat.getMedian());
     }
 }
