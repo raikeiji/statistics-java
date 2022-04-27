@@ -1,7 +1,6 @@
 package com.arraylist;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 class Statistika{
 
