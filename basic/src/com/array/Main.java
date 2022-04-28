@@ -11,6 +11,10 @@ class Statistics {
 
     }
 
+    public int[] getData() {
+        return data;
+    }
+
     public Statistics(int[] data) {
         this.data = data;
     }
@@ -83,16 +87,60 @@ class Statistics {
 
     // median function
 
-    public double getMedian(){
+    public double getMedian() {
         double median;
         int[] sortedValue = sortArray();
 
         if (sortedValue.length % 2 == 1) {
             median = sortedValue[data.length / 2];
-        }else{
+        } else {
             median = ((double) (sortedValue[sortedValue.length / 2] + sortedValue[(sortedValue.length / 2) - 1])) / 2;
         }
         return median;
+    }
+
+    // modus function
+
+    public String getModus() {
+        int c;
+        int[] b = new int[data.length];
+
+        // Pencarian data untuk menentukan modus
+        for (int i = 0; i < data.length; i++) {
+            c = 1;
+
+            if (data[i] == -1)
+                b[i] = 0;
+            else {
+                for (int j = i + 1; j < data.length; j++) {
+                    if (data[i] == data[j]) {
+                        c++;
+                        data[j] = -1;
+                    }
+                }
+
+                b[i] = c;
+            }
+        }
+
+        int m = b[0];
+        for (int i = 1; i < data.length; i++) {
+            if (b[i] >= m)
+                m = b[i];
+        }
+
+        String[] outputHasil = new String[data.length];
+        for (int i = 0; i < data.length; i++) {
+            if (b[i] == m)
+                outputHasil[i] = String.valueOf(data[i]);
+        }
+        //
+
+        // Menghapus nilai "null" pada array outputHasil
+        String[] modus = Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new);
+
+        // Memberikan "," pada masing-masing angka
+        return String.join(", ", modus);
     }
 }
 
