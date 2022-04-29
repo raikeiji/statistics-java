@@ -2,6 +2,7 @@ package com.array;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Objects;
 
 class Statistics {
 
@@ -138,9 +139,8 @@ class Statistics {
         //
 
         // Menghapus nilai "null" pada array outputHasil
-        // String[] modus = Arrays.stream(outputHasil).filter(Object::nonNull).toArray(String[]::new);
+        String[] modus = Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new);
 
-        String[] modus = Arrays.stream(outputHasil);
         // Memberikan "," pada masing-masing angka
         return String.join(", ", modus);
     }
@@ -148,7 +148,7 @@ class Statistics {
 
 public class Main {
     public static void main(String[] args) {
-        int[] data = { 4, 5, 2, 6, 7 };
+        int[] data = { 4, 5, 2, 6, 7 , 2};
 
         Statistics stat = new Statistics(data);
 
@@ -159,8 +159,10 @@ public class Main {
 
         System.out.println("sort data\t\t : " + Arrays.toString(stat.sortArray()));
 
-        System.out.println("sort data version 2 \t\t : " + Arrays.toString(stat.sortArray2()));
+        System.out.println("sort data v2\t\t : " + Arrays.toString(stat.sortArray2()));
 
-        System.out.println("Median\t\t : "+ stat.getMedian());
+        System.out.println("Median\t\t\t : "+ stat.getMedian());
+
+        System.out.println("Modus\t\t\t : " + stat.getModus());
     }
 }
