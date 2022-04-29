@@ -1,5 +1,6 @@
 package com.array;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 class Statistics {
@@ -137,8 +138,9 @@ class Statistics {
         //
 
         // Menghapus nilai "null" pada array outputHasil
-        String[] modus = Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new);
+        // String[] modus = Arrays.stream(outputHasil).filter(Object::nonNull).toArray(String[]::new);
 
+        String[] modus = Arrays.stream(outputHasil);
         // Memberikan "," pada masing-masing angka
         return String.join(", ", modus);
     }
