@@ -69,8 +69,8 @@ class Statistika{
                     // data.get(j) = data.get(j-1);
                     // data.get(j-1) = temp;
 
-                    data.get(j).equals(data.get(j-1));
-                    data.get(j-1).equals(temp);
+                    // data.get(j).equals(data.get(j-1));
+                    // data.get(j-1).equals(temp);
                 }
             }
         }
