@@ -58,6 +58,21 @@ class Statistika{
         
     }
 
+    public double getMedian() {
+       double median;
+       Collections.sort(data);;
+
+        if (data.size() % 2 == 1) {
+            // median = sortedValue[data.size() / 2];
+            median = data.get(data.size() / 2);
+        } else {
+            // median = ((double) (sortedValue[sortedValue.length / 2] + sortedValue[(sortedValue.length / 2) - 1])) / 2;
+            median = ((double) (data.get(data.size() / 2) + data.get(data.size() / 2) - 1)) / 2;
+        }
+        return median;
+    }
+
+
 }
 
 public class Main {
@@ -67,6 +82,7 @@ public class Main {
         arrlist.add(7);
         arrlist.add(39);
         arrlist.add(40);
+        arrlist.add(45);
 
         Statistika data = new Statistika(arrlist);
 
@@ -77,5 +93,9 @@ public class Main {
         // sort arraylist by using Collections class 
         Collections.sort(arrlist);
         System.out.println("Sort arraylist\t : " + arrlist);
+
+        // get Median
+
+        System.out.println("Get Median\t : " + data.getMedian());
     }
 }
