@@ -1,7 +1,11 @@
 package com.arraylist;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.stream.*;
+import java.util.*;
 
 
 class Statistika{
@@ -73,6 +77,86 @@ class Statistika{
     }
 
 
+     // Function to get ArrayList from Stream
+     public static <T> ArrayList<T>
+     getArrayListFromStream(Stream<T> stream)
+     {
+   
+         // Convert the Stream to ArrayList
+         ArrayList<T>
+             arrayList = stream
+                             .collect(Collectors
+                             .toCollection(ArrayList::new));
+   
+         // Return the ArrayList
+         return arrayList;
+     }
+
+    // modus function
+
+    public int getModus() {
+        int c;
+        // int[] b = new int[data.size()];
+
+        ArrayList<Integer> b = new ArrayList<Integer>(data.size());
+
+        // Pencarian data untuk menentukan modus
+        for (int i = 0; i < data.size(); i++) {
+            c = 1;
+
+            if (data.get(i) == -1)
+                // b.get(i) = 0;
+                b.get(i).valueOf(0);
+            else {
+                for (int j = i + 1; j < data.size(); j++) {
+                    if (data.get(i) == data.get(j)) {
+                        c++;
+                        // data.get(j) = -1;
+                        data.get(j).valueOf(-1);
+                    }
+                }
+
+                // b.get(i) = c;
+                b.get(i).valueOf(c);
+            }
+        }
+
+        int m = b.get(0);
+        for (int i = 1; i < data.size(); i++) {
+            if (b.get(i) >= m)
+                m = b.get(i);
+        }
+
+        // String[] outputHasil = new String[data.size()];
+
+        ArrayList<String> outputHasil = new ArrayList<String>(data.size());
+
+        Stream<Integer> stream;
+
+        for (int i = 0; i < data.size(); i++) {
+            if (b.get(i) == m)
+                // outputHasil.get(i) = String.valueOf(data.get(i));
+                outputHasil.get(i).valueOf(data.get(i));
+                stream = Stream.of(data.get(i));
+        }
+        //
+
+        
+
+        // ArrayList<String> modus = new ArrayList<String>();
+
+        Arraylist<Integer> getArrayListFromStm = getArrayListFromStream(stream);
+        // Menghapus nilai "null" pada array outputHasil
+
+        // modus = Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new);
+
+        // modus.equals(Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new));
+
+        // modus.equals(ArrayList.getarr);
+        // Memberikan "," pada masing-masing angka
+        return String.join(getArrayListFromStm);
+    }
+
 }
 
 public class Main {
@@ -83,6 +167,7 @@ public class Main {
         arrlist.add(39);
         arrlist.add(40);
         arrlist.add(45);
+        arrlist.add(39);
 
         Statistika data = new Statistika(arrlist);
 
