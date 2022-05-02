@@ -1,6 +1,8 @@
 package com.arraylist;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 
 class Statistika{
 
@@ -56,28 +58,6 @@ class Statistika{
         
     }
 
-    // Sort function
-
-    public ArrayList<Integer> sortArrayList() {
-        int temp;
-
-        for (int i = 0; i < data.size() - 1; i++) {
-            for (int j = data.size() - 1; j > i; j--) {
-                if (data.get(j-1) > data.get(j)) {
-                    temp = data.get(j);
-                    
-                    // data.get(j) = data.get(j-1);
-                    // data.get(j-1) = temp;
-
-                    // data.get(j).equals(data.get(j-1));
-                    // data.get(j-1).equals(temp);
-                }
-            }
-        }
-
-        return data;
-    }
-
 }
 
 public class Main {
@@ -93,6 +73,9 @@ public class Main {
         System.out.println("Get Minimize\t : " + data.getMin());
         System.out.println("Get Maximize\t : " + data.getMax());
         System.out.println("Get Average\t : " + data.getAverage());
-        System.out.println("Sort Arraylist\t : " + data.sortArrayList());
+        
+        // sort arraylist by using Collections class 
+        Collections.sort(arrlist);
+        System.out.println("Sort arraylist\t : " + arrlist);
     }
 }
