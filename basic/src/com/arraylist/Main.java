@@ -94,7 +94,7 @@ class Statistika{
 
     // modus function
 
-    public int getModus() {
+    public String getModus() {
         int c;
         // int[] b = new int[data.size()];
 
@@ -131,7 +131,7 @@ class Statistika{
 
         ArrayList<String> outputHasil = new ArrayList<String>(data.size());
 
-        Stream<Integer> stream;
+        Stream<String> stream;
 
         for (int i = 0; i < data.size(); i++) {
             if (b.get(i) == m)
@@ -145,7 +145,7 @@ class Statistika{
 
         // ArrayList<String> modus = new ArrayList<String>();
 
-        Arraylist<Integer> getArrayListFromStm = getArrayListFromStream(stream);
+        ArrayList<Integer> getArrayListFromStm = getArrayListFromStream(stream);
         // Menghapus nilai "null" pada array outputHasil
 
         // modus = Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new);
@@ -153,8 +153,14 @@ class Statistika{
         // modus.equals(Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new));
 
         // modus.equals(ArrayList.getarr);
+
+        // int[] getlistallofit = getArrayListFromStm.stream(outputHasil).filter(Objects::nonNull).toArray(int[]::new);
+        String[] getlistallofit = getArrayListFromStm.stream(outputHasil).filter(Objects::nonNull).toArray(int[]::new);
+        
         // Memberikan "," pada masing-masing angka
-        return String.join(getArrayListFromStm);
+        // return String.join(", ", getlistallofit);
+
+        return getlistallofit;
     }
 
 }
