@@ -72,48 +72,147 @@ class Statistika{
     // modus function
     // source : http://blog-algoritma-programmer.blogspot.com/2016/02/source-code-program-menghitung-modus_18.html
 
-    public int getModus(){
+    // public int getModus(){
 
-        int HModus=0,i,FrekModus,KandidatModus,FrekKandidatModus;
-        boolean MasihSama;
+    //     int HModus=0,i;
+    //     int Freks_Modus;
+    //     int KandidatModus;
+    //     int FrekKandidatModus;
+    //     boolean MasihSama;
 
-        // pengurutan data
+    //     // pengurutan data
 
-        for (int j = 0; j < data.size() - 1; j++) {
-            for (int j2 = j + 1; j2 < data.size(); j2++) {
-                if (data.get(j) < data.get(j2)) {
-                    int temp = data.get(j);
-                    data.get(j).equals(data.get(j2));
-                    data.get(j2).equals(temp);
-                } 
-            }
-        }
+    //     for (int j = 0; j < data.size() - 1; j++) {
+    //         for (int j2 = j + 1; j2 < data.size(); j2++) {
+    //             if (data.get(j) < data.get(j2)) {
+    //                 int temp = data.get(j);
+    //                 data.get(j).equals(data.get(j2));
+    //                 data.get(j2).equals(temp);
+    //             } 
+    //         }
+    //     }
 
-        FrekModus = 0;
-        i = 0;
+    //     Freks_Modus = 0;
+    //     i = 0;
 
-        while(i < data.size()){
-            KandidatModus = data.get(i);
-            FrekKandidatModus = 1;
-            i++;
-            MasihSama = true;
+    //     while(i < data.size()){
+    //         KandidatModus = data.get(i);
+    //         FrekKandidatModus = 1;
+    //         i++;
+    //         MasihSama = true;
 
-            while(MasihSama && i < data.size()){
-                if(data.get(i) == KandidatModus){
-                    FrekKandidatModus = FrekKandidatModus + 1;
-                    MasihSama = true;
-                }
-                else{
-                    MasihSama = false;
-                }
-            }
-            if(FrekKandidatModus > KandidatModus){
-                HModus = KandidatModus;
-                FrekModus = FrekKandidatModus;
-            }
+    //         while(MasihSama && i < data.size()){
+    //             if(data.get(i).equals(KandidatModus)){
+    //                 FrekKandidatModus = FrekKandidatModus + 1;
+    //                 MasihSama = true;
+    //             }
+    //             else{
+    //                 MasihSama = false;
+    //             }
+    //         }
+    //         if(FrekKandidatModus > KandidatModus){
+    //             HModus = KandidatModus;
+    //             Freks_Modus = FrekKandidatModus;
+    //         }
             
+    //     }
+    //     return HModus; 
+    // }
+
+    // source : http://rutinitasinformatika.blogspot.com/2012/12/mencari-modus-pada-java.html
+
+    // public int getModus(){
+
+    //     ArrayList<Integer> frequencyTable = new ArrayList<>(data.size());
+        
+    //     for (int i = 0; i < data.size(); i++) {
+    //         frequencyTable.get(i).equals(0);
+    //     }
+
+    //     int[] tampung = {};
+    //     for (int i = 0; i < data.size(); i++) {
+    //         frequencyTable.get(data.get(i)) = tampung;
+    //         tampung++;   
+    //     }
+
+    //     int modusValue = 0;
+
+    //     for (int i = 0; i < data.size(); i++){
+    //         for (frequencyTable.get(i).compareTo(modusValue)) {
+    //             modusValue = i;
+    //         }
+    //     }
+    //     return 1;
+    // }
+
+    // another trial 
+    
+    public String getModus() {
+        int c;
+        // int[] b = new int[data.size()];
+
+        ArrayList<Integer> b = new ArrayList<Integer>(data.size());
+
+        // Pencarian data untuk menentukan modus
+        for (int i = 0; i < data.size(); i++) {
+            c = 1;
+
+            if (data.get(i) == -1)
+                // b.get(i) = 0;
+                b.get(i).valueOf(0);
+            else {
+                for (int j = i + 1; j < data.size(); j++) {
+                    if (data.get(i) == data.get(j)) {
+                        c++;
+                        // data.get(j) = -1;
+                        data.get(j).valueOf(-1);
+                    }
+                }
+
+                // b.get(i) = c;
+                b.get(i).valueOf(c);
+            }
         }
-        return HModus; 
+
+        int m = b.get(0);
+        for (int i = 1; i < data.size(); i++) {
+            if (b.get(i) >= m)
+                m = b.get(i);
+        }
+
+        // String[] outputHasil = new String[data.size()];
+
+        ArrayList<String> outputHasil = new ArrayList<String>(data.size());
+
+        // Stream<Integer> stream;
+
+        for (int i = 0; i < data.size(); i++) {
+            if (b.get(i) == m)
+                // outputHasil.get(i) = String.valueOf(data.get(i));
+                outputHasil.get(i).valueOf(data.get(i));
+                // stream = Stream.of(data.get(i));
+        }
+        //
+
+
+
+        ArrayList<String> modus2 = new ArrayList<String>();
+
+        // Arraylist<Integer> getArrayListFromStm = getArrayListFromStream(stream);
+        // Menghapus nilai "null" pada array outputHasil
+
+        // modus = Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new);
+
+        modus2 = Stream.of(outputHasil).collect(Collectors.toCollection(ArrayList::new));
+
+         
+        // modus.equals(Arrays.stream(outputHasil).filter(Objects::nonNull).toArray(String[]::new));
+
+        // modus.equals(ArrayList.getarr);
+        // Memberikan "," pada masing-masing angka
+        // return String.join(getArrayListFromStm);
+
+        return String.join(", ", modus2);
     }
     
 }
@@ -144,6 +243,6 @@ public class Main {
         
         // get Modus
 
-        System.out.println("Get Modus\t : " );
+        // System.out.println("Get Modus\t : " + data.getModus());
     }
 }
